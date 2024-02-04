@@ -4,9 +4,17 @@ Agente IA open-soruce para atender consultas sobre la emergencia en Chile
 
 ## Descripción
 
-AyudaChileGPT es un agente de Inteligencia Artificial que permite responder preguntas relacionadas con la emergencia en Chile. El agente utiliza la tecnología de procesamiento del lenguaje natural para entender las preguntas y proporcionar respuestas precisas y útiles.
+AyudaChileGPT es un agente de Inteligencia Artificial que permite responder preguntas relacionadas con la emergencia en Chile. El agente utiliza la tecnología de procesamiento del lenguaje natural mediante la API de 
+[CodeGPT](https://developers.codegpt.co) para entender las preguntas y proporcionar respuestas precisas y útiles.
 
-El objetivo de AyudaChileGPT es proporcionar información actualizada y confiable sobre la emergencia en Chile, ayudando a las personas a obtener respuestas rápidas y precisas a sus preguntas. El agente está diseñado para ser fácil de usar y accesible para cualquier persona que necesite información sobre la emergencia en Chile.
+El objetivo de AyudaChileGPT es proporcionar información actualizada y confiable sobre la emergencia en Chile, ayudando a las personas a obtener respuestas rápidas y precisas a sus preguntas.
+
+## Cómo ayudar
+Puedes ayudar realizando las siguientes acciones:
+
+- Puedes agregar un PR al proyecto si quieres mejorar las funcionalidades del Agente
+- Puedes agregar archivos de conocimiento a la base de datos en esta carpega en Google Drive:https://drive.google.com/drive/folders/1L_VrR_vKrM3lPqMwS_BDFMMNDsBXYUEO?usp=sharing
+- Comparte el link del Agente para que más personas puedan tener acceso a la información actualizada sobre la emergencia que está sufriendo Chile 🇨🇱
 
 ## Cómo usar
 
@@ -16,7 +24,7 @@ pip install -r requirements
 ```
 
 - Streamlit: Esta librería se utiliza para crear una interfaz de usuario interactiva para el agente AyudaChileGPT.
-- Judini: Esta librería se utiliza para procesar el lenguaje natural y generar respuestas precisas a las preguntas del usuario.
+- Judini: Esta librería se utiliza para procesar el lenguaje natural mediante la API de [CodeGPT](https://developers.codegpt.co) y generar respuestas precisas a las preguntas del usuario.
 
 Una vez que hayas instalado las librerías, puedes ejecutar el agente AyudaChileGPT utilizando el siguiente comando:
 
@@ -33,3 +41,13 @@ Esto abrirá una interfaz de usuario en tu navegador web. Simplemente escribe tu
 - Interfaz de usuario interactiva: AyudaChileGPT cuenta con una interfaz de usuario interactiva y fácil de usar, lo que lo hace accesible para cualquier persona que necesite información sobre la emergencia en Chile.
 - Amplia gama de preguntas: El agente está diseñado para responder una amplia gama de preguntas relacionadas con la emergencia en Chile, desde información sobre recursos y ayuda hasta medidas de prevención y estadísticas.
 - Accesibilidad: AyudaChileGPT está disponible en línea y es accesible desde cualquier dispositivo con conexión a internet, lo que lo hace fácil de usar para cualquier persona que necesite información sobre la emergencia en Chile.
+
+## Pendientes
+
+1. Conectar con APIs que entreguen el estado actual de los incendios
+2. Conectar con API que entregue la calidad del aire
+3. Conectar con API que permitan realizar donaciones
+4. Conectar con API que proporcionen informaciones sobre los refugios disponibles para emergencias
+5. Implementar funcionalidad de alertas en tiempo real para informar a los usuarios sobre situaciones de emergencia
+6. Conectar con API que proporcione una lista de números de contacto de emergencia locales
+7. Mejorar la capacidad de hacer preguntas sobre la base de datos de emergencias.
