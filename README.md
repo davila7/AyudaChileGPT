@@ -1,6 +1,6 @@
 # AyudaChileGPT
 
-Agente IA para atender consultas sobre la emergencia en Chile
+Agente IA open-soruce para atender consultas sobre la emergencia en Chile
 
 ## Descripción
 
@@ -28,8 +28,8 @@ Esto abrirá una interfaz de usuario en tu navegador web. Simplemente escribe tu
 
 ## Funcionalidades
 
-- Respuestas precisas: AyudaChileGPT utiliza la tecnología de procesamiento del lenguaje natural para entender las preguntas y proporcionar respuestas
-
-## Funcionamiento
-
-AyudaChileGPT utiliza un modelo de lenguaje pre-entrenado llamado GPT-3 (Generative Pre-trained Transformer) para entender las preguntas y generar respuestas. Este modelo ha sido entrenado con una gran cantidad de datos y
+- Respuestas precisas: AyudaChileGPT utiliza la tecnología de procesamiento del lenguaje natural para entender las preguntas y proporcionar respuestas precisas y útiles.
+- Información actualizada: El agente se actualiza constantemente con información actualizada sobre la emergencia en Chile para proporcionar respuestas precisas y confiables.
+- Interfaz de usuario interactiva: AyudaChileGPT cuenta con una interfaz de usuario interactiva y fácil de usar, lo que lo hace accesible para cualquier persona que necesite información sobre la emergencia en Chile.
+- Amplia gama de preguntas: El agente está diseñado para responder una amplia gama de preguntas relacionadas con la emergencia en Chile, desde información sobre recursos y ayuda hasta medidas de prevención y estadísticas.
+- Accesibilidad: AyudaChileGPT está disponible en línea y es accesible desde cualquier dispositivo con conexión a internet, lo que lo hace fácil de usar para cualquier persona que necesite información sobre la emergencia en Chile.
