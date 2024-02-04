@@ -147,6 +147,21 @@ def page2():
     st.write(df)
 
 def page3():
+    st.title('Mapa de la Nasa con focos de incendios')
+    st.write('Fuente: https://firms.modaps.eosdis.nasa.gov/')
+    # URL de la API
+    url = "https://firms.modaps.eosdis.nasa.gov/api/country/csv/c45d84bcde5bf60dcb80b3c44983536a/VIIRS_SNPP_NRT/CHL/1/2024-02-04"
+
+    # Leer los datos desde la URL
+    df = pd.read_csv(url)
+
+    # Renombrar columnas a 'lat' y 'lon'
+    df = df.rename(columns={'latitude': 'lat', 'longitude': 'lon'})
+
+    # Mostrar los datos en un mapa usando Streamlit
+    st.map(df)
+
+def page4():
     st.title("EN CONSTRUCCIÓN")
     # Aquí va todo el contenido de la página 3
 
@@ -154,7 +169,8 @@ def page3():
 PAGES = {
     "Chat AyudaChileGPT": page1,
     "Centros de Ayuda Verificados": page2,
-    "Lista de personas desaparecidas": page3
+    "Mapa de Incendios": page3,
+    "Lista de personas desaparecidas": page4
 }
 
 st.sidebar.title('Navegación')
