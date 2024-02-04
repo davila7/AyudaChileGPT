@@ -8,6 +8,7 @@ from PIL import Image
 from semantic_router import Route
 from semantic_router.encoders import CohereEncoder
 from semantic_router.layer import RouteLayer
+import pandas as pd
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -83,43 +84,88 @@ with col2:
 st.write("Proyecto open-source: "+ "https://github.com/davila7/AyudaChileGPT")
 st.markdown('---')
 
-# Initialize chat history
-if "messages" not in st.session_state:
-    st.session_state.messages = []
+def page1():
+    st.header("Consulta a AyudaChileGPT")
+    # Initialize chat history
+    if "messages" not in st.session_state:
+        st.session_state.messages = []
 
-# Display chat messages from history on app rerun
-for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
-        st.markdown(message["content"])
+    # Display chat messages from history on app rerun
+    for message in st.session_state.messages:
+        with st.chat_message(message["role"]):
+            st.markdown(message["content"])
 
-# Accept user input
-if prompt := st.chat_input("How can I help you?"):
-    rl = RouteLayer(encoder=encoder, routes=routes)
-    route = rl(prompt).name
+    # Accept user input
+    if prompt := st.chat_input("Consulta sobre la emergencia"):
+        rl = RouteLayer(encoder=encoder, routes=routes)
+        route = rl(prompt).name
 
-    # Add user message to chat history
-    st.session_state.messages.append({"role": "user", "content": prompt})
-    # Display user message in chat message container
-    with st.chat_message("user"):
-        st.markdown(prompt)
+        # Add user message to chat history
+        st.session_state.messages.append({"role": "user", "content": prompt})
+        # Display user message in chat message container
+        with st.chat_message("user"):
+            st.markdown(prompt)
 
-    # Display assistant response in chat message container
-    with st.chat_message("assistant"):
-        with st.spinner('Cargando respuesta...'):
-            message_placeholder = st.empty()
-            full_response = ""
-            messages = st.session_state.messages
-            #st.write(route)
-            if(route == 'ayuda_chile'):
-                completion = Completion(api_key)
-                response_completion = completion.create(agent_id, messages, stream=False)
-            else:
-                response_completion = "Estoy aquí para ayudarte en relación a la emergencia"
-                
-            for response in response_completion:
-                time.sleep(0.05)
-                full_response += (response or "")
-                message_placeholder.markdown(full_response + "▌")       
-            message_placeholder.markdown(full_response)
-    st.session_state.messages.append({"role": "assistant", "content": full_response})
-    
+        # Display assistant response in chat message container
+        with st.chat_message("assistant"):
+            with st.spinner('Cargando respuesta...'):
+                message_placeholder = st.empty()
+                full_response = ""
+                messages = st.session_state.messages
+                #st.write(route)
+                if(route == 'ayuda_chile'):
+                    completion = Completion(api_key)
+                    response_completion = completion.create(agent_id, messages, stream=False)
+                else:
+                    response_completion = "Estoy aquí para ayudarte en relación a la emergencia"
+                    
+                for response in response_completion:
+                    time.sleep(0.05)
+                    full_response += (response or "")
+                    message_placeholder.markdown(full_response + "▌")       
+                message_placeholder.markdown(full_response)
+        st.session_state.messages.append({"role": "assistant", "content": full_response})
+
+def page2():
+    st.header("Centros de ayuda verificados")
+
+    # Cargar el archivo csv
+    @st.cache_data
+    def load_data():
+        return pd.read_csv('assets/centros_verificados_v3.csv')
+
+    # Cargar los datos
+    df = load_data()
+
+    # Input de texto 
+    filtro = st.text_input('Filtrar información')
+
+    # Filtrar el dataframe 
+    df = df[df.apply(lambda row: row.astype(str).str.lower().str.contains(filtro.lower()), axis = 1).any(axis = 1)]
+
+    # Mostrar el dataframe
+    st.write(df)
+
+def page3():
+    st.title("EN CONSTRUCCIÓN")
+    # Aquí va todo el contenido de la página 3
+
+#sidebar
+PAGES = {
+    "Chat AyudaChileGPT": page1,
+    "Centros de Ayuda Verificados": page2,
+    "Lista de personas desaparecidas": page3
+}
+
+st.sidebar.title('Navegación')
+selection = st.sidebar.radio("Ir a", list(PAGES.keys()))
+page = PAGES[selection]
+
+# Mostrar la página seleccionada con el radio button
+page()
+
+
+
+
+
+
