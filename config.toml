@@ -1,0 +1,7 @@
+[global]
+# Nombre de la aplicación
+app_title = "AyudaChileGPT - Agente IA experto en emergencias en Chile"
+
+[theme]
+# URL de la imagen del logotipo
+logo = "https://ayuda-chile-gpt.onrender.com/media/2426c8e3d54f25a70def4e4ef939cff6eee92f6e5dee811d24c70ac5.png"
