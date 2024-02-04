@@ -16,57 +16,57 @@ api_key= os.getenv("CODEGPT_API_KEY")
 agent_id= os.getenv("CODEGPT_AGENT_ID")
 st.set_page_config(layout="centered")
 
-
+# retomar cuando se pase del free trail
 # create the encoder
-encoder = CohereEncoder()
+#encoder = CohereEncoder()
 
 # we could use this as a guide for our chatbot to avoid political conversations
-emergencia = Route(
-    name="ayuda_chile",
-    utterances=[
-        "¿Qué se sabe sobre la emergencia del incendio?",
-        "¡La quinta región de Chile se está quemando!",
-        "¿Está controlado el incendio en la quinta región?",
-        "¿Cómo puedo ayudar con la emergencia del incendio en la quinta región?",
-        "Cuéntame más sobre el incendio en la quinta región.",
-        "¿Quién está luchando contra el incendio en la quinta región?",
-        "¿Cómo comenzó el incendio en la quinta región?",
-        "¿Cuánto daño ha causado el incendio en la quinta región?",
-        "¿Existen planes de recuperación para la quinta región después del incendio?",
-        "¿Cuánta gente ha sido afectada por el incendio en la quinta región?",
-        "¿que centro de ayuda hay en santiago?",
-        "¿Donde hay centros de Ayuda?",
-        "Quiero ayudar",
-        "Cómo puedo ayudar?",
-        "Donde puedo ayudar?",
-        "Quiero donar",
-        "Cómo puedo donar?",
-        "Donde puedo donar?",
-        "Quiero hacer una donación",
-        "Cómo puedo hacer una donación?",
-        "Donde puedo hacer una donación?",
-        "Quiero donar dinero",
-        "Cómo puedo donar dinero?",
-        "Donde puedo donar dinero?",
-        "Quiero donar ropa",
-        "Cómo puedo donar ropa?",
-        "Donde puedo donar ropa?",
-        "Quiero donar comida",
-        "Cómo puedo donar comida?",
-        "Donde puedo donar comida?",
-        "Quiero donar medicinas",
-        "Cómo puedo donar medicinas?",
-        "Donde puedo donar medicinas?",
-        "Quiero donar sangre",
-        "Cómo puedo donar sangre?",
-        "Donde puedo donar sangre?",
-        "Quiero donar tiempo",
-        "Cómo puedo donar tiempo?",
-    ],
-)
+# emergencia = Route(
+#     name="ayuda_chile",
+#     utterances=[
+#         "¿Qué se sabe sobre la emergencia del incendio?",
+#         "¡La quinta región de Chile se está quemando!",
+#         "¿Está controlado el incendio en la quinta región?",
+#         "¿Cómo puedo ayudar con la emergencia del incendio en la quinta región?",
+#         "Cuéntame más sobre el incendio en la quinta región.",
+#         "¿Quién está luchando contra el incendio en la quinta región?",
+#         "¿Cómo comenzó el incendio en la quinta región?",
+#         "¿Cuánto daño ha causado el incendio en la quinta región?",
+#         "¿Existen planes de recuperación para la quinta región después del incendio?",
+#         "¿Cuánta gente ha sido afectada por el incendio en la quinta región?",
+#         "¿que centro de ayuda hay en santiago?",
+#         "¿Donde hay centros de Ayuda?",
+#         "Quiero ayudar",
+#         "Cómo puedo ayudar?",
+#         "Donde puedo ayudar?",
+#         "Quiero donar",
+#         "Cómo puedo donar?",
+#         "Donde puedo donar?",
+#         "Quiero hacer una donación",
+#         "Cómo puedo hacer una donación?",
+#         "Donde puedo hacer una donación?",
+#         "Quiero donar dinero",
+#         "Cómo puedo donar dinero?",
+#         "Donde puedo donar dinero?",
+#         "Quiero donar ropa",
+#         "Cómo puedo donar ropa?",
+#         "Donde puedo donar ropa?",
+#         "Quiero donar comida",
+#         "Cómo puedo donar comida?",
+#         "Donde puedo donar comida?",
+#         "Quiero donar medicinas",
+#         "Cómo puedo donar medicinas?",
+#         "Donde puedo donar medicinas?",
+#         "Quiero donar sangre",
+#         "Cómo puedo donar sangre?",
+#         "Donde puedo donar sangre?",
+#         "Quiero donar tiempo",
+#         "Cómo puedo donar tiempo?",
+#     ],
+# )
 
-# creamos las rutas
-routes = [emergencia]
+# # creamos las rutas
+# routes = [emergencia]
 
 # agrega dos columnas
 col1, col2 = st.columns([2,3])
@@ -97,8 +97,8 @@ def page1():
 
     # Accept user input
     if prompt := st.chat_input("Consulta sobre la emergencia"):
-        rl = RouteLayer(encoder=encoder, routes=routes)
-        route = rl(prompt).name
+        # rl = RouteLayer(encoder=encoder, routes=routes)
+        # route = rl(prompt).name
 
         # Add user message to chat history
         st.session_state.messages.append({"role": "user", "content": prompt})
@@ -113,7 +113,7 @@ def page1():
                 full_response = ""
                 messages = st.session_state.messages
                 #st.write(route)
-                if(route == 'ayuda_chile'):
+                if True: # (route == 'ayuda_chile'): # retomar cuando se pase del free trail
                     completion = Completion(api_key)
                     response_completion = completion.create(agent_id, messages, stream=False)
                 else:
