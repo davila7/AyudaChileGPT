@@ -174,10 +174,16 @@ def page4():
     # Cargar los datos desde el Excel en la nube
     try:
         df = pd.read_excel(excel_url)
+
+        # Filtro de personas confirmadas
+        confirmadas_only = st.checkbox("Mostrar solo personas confirmadas")
+        if confirmadas_only:
+            df = df[df['Estado'].str.contains('Confirmado', case=False, na=False)]
+
         st.write("Datos de personas desaparecidas:")
         st.write(df)
     except Exception as e:
-        st.write(f"Error al cargar los datos: {e}")
+        st.write(f"Error al cargar los datos del Excel: {e}")
         
 #sidebar
 PAGES = {
