@@ -52,3 +52,8 @@ Esto abrirá una interfaz de usuario en tu navegador web. Simplemente escribe tu
 5. Implementar funcionalidad de alertas en tiempo real para informar a los usuarios sobre situaciones de emergencia
 6. Conectar con API que proporcione una lista de números de contacto de emergencia locales
 7. Mejorar la capacidad de hacer preguntas sobre la base de datos de emergencias.
+
+
+## Versión ChatGPT
+En la versión ChatGPT, el agente AyudaChileGPT se ha mejorado para proporcionar una experiencia de chat más interactiva y conversacional. El agente ahora puede mantener una conversación más fluida con el usuario, lo que lo hace más accesible y fácil de usar.
+[AyudaChile GPT 🤖🇨🇱 en ChatGPT](https://chat.openai.com/g/g-G3TvxWdjN-ayudachile-gpt)
