@@ -128,7 +128,6 @@ def page1():
                 completion = Completion(codegpt_api_key)
                 response_completion = completion.create(codegpt_acopio_agent_id, messages, stream=False)
                 
-                    
                 for response in response_completion:
                     time.sleep(0.05)
                     full_response += (response or "")
