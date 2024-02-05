@@ -58,14 +58,14 @@ llm_fibe = ChatOpenAI(openai_api_key=codegpt_api_key,
                 model=codegpt_fibe_agent_id, verbose=True)
 llm_chain_fibe = LLMChain(llm=llm_fibe, prompt=execute_task_prompt)
 
-fibe_agent_tool = Tool(
+acopio_agent_tool = Tool(
     name='AGENTE_ACOPIO',
     func=llm_chain_fibe.run,
     description="Útil para cuando necesitas responder preguntas sobre la ficha La Ficha Básica de Emergencia (FIBE)"
 ) 
 
 # agregamos todos los tools al array
-tools = [acopio_agent_tool,fibe_agent_tool]
+tools = [acopio_agent_tool]
 
 #memory
 memory = ConversationBufferWindowMemory(
@@ -94,23 +94,47 @@ st.markdown('---')
 
 def page1():
     st.header("Consulta a AyudaChileGPT")
-    form = st.form('AgentsTools')
-    question = form.text_input("Ingresa tu consulta", "")
-    btn = form.form_submit_button("Enviar")
 
-    if btn:
-        st.markdown("### Encontrando Agentes:")
-        with st.spinner("Loading"):
-            agent = initialize_agent(
-                agent="chat-conversational-react-description",
-                tools=tools,
-                llm=llm_openai,
-                verbose=True,
-                max_iteration=3,
-                early_stop_method="generate",
-                memory=memory
-            )
-            st.write(agent.invoke(question))
+    
+    # Initialize chat history
+    if "messages" not in st.session_state:
+        st.session_state.messages = []
+
+    # Display chat messages from history on app rerun
+    for message in st.session_state.messages:
+        with st.chat_message(message["role"]):
+            st.markdown(message["content"])
+
+
+    # Accept user input
+    if prompt := st.chat_input("Consulta sobre la emergencia"):
+        # rl = RouteLayer(encoder=encoder, routes=routes)
+        # route = rl(prompt).name
+
+        # Add user message to chat history
+        st.session_state.messages.append({"role": "user", "content": prompt})
+        # Display user message in chat message container
+        with st.chat_message("user"):
+            st.markdown(prompt)
+
+        # Display assistant response in chat message container
+        with st.chat_message("assistant"):
+            with st.spinner('Cargando respuesta...'):
+                message_placeholder = st.empty()
+                full_response = ""
+                messages = st.session_state.messages
+                #st.write(route)
+                
+                completion = Completion(codegpt_api_key)
+                response_completion = completion.create(codegpt_acopio_agent_id, messages, stream=False)
+                
+                    
+                for response in response_completion:
+                    time.sleep(0.05)
+                    full_response += (response or "")
+                    message_placeholder.markdown(full_response + "▌")       
+                message_placeholder.markdown(full_response)
+        st.session_state.messages.append({"role": "assistant", "content": full_response})
 
 def page2():
     st.header("Centros de ayuda verificados")

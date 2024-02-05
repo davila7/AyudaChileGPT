@@ -1,4 +1,3 @@
-import chromadb
 import streamlit as st
 from langchain.text_splitter import RecursiveCharacterTextSplitter, SentenceTransformersTokenTextSplitter
 import numpy as np
