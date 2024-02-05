@@ -134,6 +134,9 @@ def page1():
                 message_placeholder.markdown(full_response)
         st.session_state.messages.append({"role": "assistant", "content": full_response})
 
+import streamlit as st
+import pandas as pd
+
 def page2():
     st.header("Centros de ayuda verificados")
 
@@ -155,15 +158,11 @@ def page2():
     if not df_filtered.empty:
         # Crear una nueva columna con enlaces HTML
         df_filtered['Mapa enlace'] = df_filtered['Mapa'].apply(lambda x: f'<a target="_blank" href="{x}">{x}</a>')
-        # Mostrar el DataFrame con enlaces
-        st.write(df_filtered.drop(columns=['Mapa']).iloc[:, 1:], unsafe_allow_html=True)
+        # Drop y rename columna Mapa
+        df_filtered = df_filtered.drop(columns=['Mapa']).rename(columns={'Mapa enlace': 'Mapa'})
 
-        # Paginar los resultados
-        show_more = st.checkbox('Mostrar más')
-        if not show_more:
-            st.write(df_filtered.drop(columns=['Mapa']).iloc[:, 1:][:10], unsafe_allow_html=True)
-        else:
-            st.write(df_filtered.drop(columns=['Mapa']).iloc[:, 1:], unsafe_allow_html=True)
+        # Mostrar el DataFrame con enlaces
+        st.write(df_filtered.to_html(escape=False), unsafe_allow_html=True)
     else:
         st.write("No se encontraron resultados para el filtro aplicado.")
 
