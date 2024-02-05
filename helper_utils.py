@@ -1,23 +1,12 @@
 import streamlit as st
 from langchain.text_splitter import RecursiveCharacterTextSplitter, SentenceTransformersTokenTextSplitter
 import numpy as np
-from pypdf import PdfReader
 import re
 import io
 from tqdm import tqdm
 from langchain.callbacks import StreamlitCallbackHandler
 from typing import Callable, Any
 import sys
-
-
-def _read_pdf(filename):
-    reader = PdfReader(filename)
-    
-    pdf_texts = [p.extract_text().strip() for p in reader.pages]
-
-    # Filter the empty strings
-    pdf_texts = [text for text in pdf_texts if text]
-    return pdf_texts
 
 
 def _chunk_texts(texts):
@@ -35,20 +24,6 @@ def _chunk_texts(texts):
         token_split_texts += token_splitter.split_text(text)
 
     return token_split_texts
-
-
-def load_chroma(filename, collection_name, embedding_function):
-    texts = _read_pdf(filename)
-    chunks = _chunk_texts(texts)
-
-    chroma_cliet = chromadb.Client()
-    chroma_collection = chroma_cliet.create_collection(name=collection_name, embedding_function=embedding_function)
-
-    ids = [str(i) for i in range(len(chunks))]
-
-    chroma_collection.add(ids=ids, documents=chunks)
-
-    return chroma_collection
 
 def word_wrap(string, n_chars=72):
     # Wrap a string at the next space after n_chars

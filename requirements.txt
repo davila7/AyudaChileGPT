@@ -2,3 +2,4 @@ streamlit
 judini
 semantic-router
 langchain
+tqdm
