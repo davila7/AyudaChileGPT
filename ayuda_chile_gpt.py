@@ -161,11 +161,12 @@ def page2():
         # Drop y rename columna Mapa
         df_filtered = df_filtered.drop(columns=['Mapa']).rename(columns={'Mapa enlace': 'Mapa'})
 
-        # Mostrar el DataFrame con enlaces
+        # Mostrar el DataFrame con enlaces 
         st.write(df_filtered.to_html(escape=False), unsafe_allow_html=True)
     else:
         st.write("No se encontraron resultados para el filtro aplicado.")
-
+    st.write("")
+    st.write("")
     # Incrustar el mapa de Google Maps
     map_url = "https://www.google.com/maps/d/embed?mid=13KKV0Sy81G2L0Vz5lS9E90YysNi71BQ&ehbc=2E312F&noprof=1"
     components.iframe(map_url, width=640, height=480)
