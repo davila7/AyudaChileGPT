@@ -162,9 +162,23 @@ def page3():
     st.map(df)
 
 def page4():
-    st.title("EN CONSTRUCCIÓN")
-    # Aquí va todo el contenido de la página 3
+    # st.title("EN CONSTRUCCIÓN")
+    # Aquí va todo el contenido de la página 4
+    # Propuesta para cargar datos de un excell y que sean extraidos datos de personas desapareciddas. 
+    # By Computer Science Engineer : Felipe Alfonso Gonzalez - github.com/felipealfonsog 
+    st.title("Lista de personas desaparecidas")
 
+    # URL del archivo Excel en la nube
+    excel_url = "URL_DEL_EXCEL_EN_LA_NUBE"
+
+    # Cargar los datos desde el Excel en la nube
+    try:
+        df = pd.read_excel(excel_url)
+        st.write("Datos de personas desaparecidas:")
+        st.write(df)
+    except Exception as e:
+        st.write(f"Error al cargar los datos del Excel: {e}")
+        
 #sidebar
 PAGES = {
     "Chat AyudaChileGPT": page1,
