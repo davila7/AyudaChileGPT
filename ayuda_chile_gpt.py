@@ -41,31 +41,31 @@ execute_task_prompt = PromptTemplate(
 )
 
 # Create a ChatOpenAI object with the retrieved API key, API base URL, and agent ID
-llm_acopio = ChatOpenAI(openai_api_key=codegpt_api_key,
-                openai_api_base=codegpt_api_base,
-                model=codegpt_acopio_agent_id, verbose=True)
-llm_chain_acopio = LLMChain(llm=llm_acopio, prompt=execute_task_prompt)
+# llm_acopio = ChatOpenAI(openai_api_key=codegpt_api_key,
+#                 openai_api_base=codegpt_api_base,
+#                 model=codegpt_acopio_agent_id, verbose=True)
+# llm_chain_acopio = LLMChain(llm=llm_acopio, prompt=execute_task_prompt)
 
-acopio_agent_tool = Tool(
-    name='AGENTE_ACOPIO',
-    func=llm_chain_acopio.run,
-    description="Útil para cuando necesitas responder preguntas sobre Centros de Acopio"
-) 
+# acopio_agent_tool = Tool(
+#     name='AGENTE_ACOPIO',
+#     func=llm_chain_acopio.run,
+#     description="Útil para cuando necesitas responder preguntas sobre Centros de Acopio"
+# ) 
 
-# Create a ChatOpenAI object with the retrieved API key, API base URL, and agent ID
-llm_fibe = ChatOpenAI(openai_api_key=codegpt_api_key,
-                openai_api_base=codegpt_api_base,
-                model=codegpt_fibe_agent_id, verbose=True)
-llm_chain_fibe = LLMChain(llm=llm_fibe, prompt=execute_task_prompt)
+# # Create a ChatOpenAI object with the retrieved API key, API base URL, and agent ID
+# llm_fibe = ChatOpenAI(openai_api_key=codegpt_api_key,
+#                 openai_api_base=codegpt_api_base,
+#                 model=codegpt_fibe_agent_id, verbose=True)
+# llm_chain_fibe = LLMChain(llm=llm_fibe, prompt=execute_task_prompt)
 
-acopio_agent_tool = Tool(
-    name='AGENTE_ACOPIO',
-    func=llm_chain_fibe.run,
-    description="Útil para cuando necesitas responder preguntas sobre la ficha La Ficha Básica de Emergencia (FIBE)"
-) 
+# acopio_agent_tool = Tool(
+#     name='AGENTE_ACOPIO',
+#     func=llm_chain_fibe.run,
+#     description="Útil para cuando necesitas responder preguntas sobre la ficha La Ficha Básica de Emergencia (FIBE)"
+# ) 
 
-# agregamos todos los tools al array
-tools = [acopio_agent_tool]
+# # agregamos todos los tools al array
+# tools = [acopio_agent_tool]
 
 #memory
 memory = ConversationBufferWindowMemory(
