@@ -156,14 +156,78 @@ def page2():
 def page3():
     st.title('Mapa de la Nasa con focos de incendios')
     st.write('Fuente: https://firms.modaps.eosdis.nasa.gov/')
-    # URL de la API
-    url = "https://firms.modaps.eosdis.nasa.gov/api/country/csv/c45d84bcde5bf60dcb80b3c44983536a/VIIRS_SNPP_NRT/CHL/1/2024-02-04"
+    
+    # --------------------- Process data from NASA ---------------------------
+    import datetime
+    # Get the current date
+    current_date = datetime.date.today()
 
-    # Leer los datos desde la URL
+    # Format the date as 'YYYY-MM-DD'
+    formatted_date = current_date.strftime('%Y-%m-%d')
+
+    # Construct the URL with the formatted date
+    url = f"https://firms.modaps.eosdis.nasa.gov/api/country/csv/c45d84bcde5bf60dcb80b3c44983536a/VIIRS_NOAA20_NRT/CHL/1/{formatted_date}"
+
+    # Read the data from the URL
     df = pd.read_csv(url)
 
-    # Renombrar columnas a 'lat' y 'lon'
+    # If the dataframe is empty, get the data from the previous day
+    if df.empty:
+        previous_date = current_date - datetime.timedelta(days=1)
+        previous_formatted_date = previous_date.strftime('%Y-%m-%d')
+        previous_url = f"https://firms.modaps.eosdis.nasa.gov/api/country/csv/c45d84bcde5bf60dcb80b3c44983536a/VIIRS_NOAA20_NRT/CHL/1/{previous_formatted_date}"
+        df = pd.read_csv(previous_url)
+
+    # Rename columns to 'lat' and 'lon'
     df = df.rename(columns={'latitude': 'lat', 'longitude': 'lon'})
+
+    # Convert bright_ti4 and bright_ti5 to Celsius
+    df['bright_ti4'] = df['bright_ti4'] - 273.15
+    df['bright_ti5'] = df['bright_ti5'] - 273.15
+
+    # Convert acq_date and acq_time to datetime
+    df['acq_time'] = pd.to_datetime(df['acq_time'], format='%H%M%S').dt.time
+
+    # --------------------------- GET UTC CHile Time---------------------------
+    import pytz
+    from datetime import datetime, timedelta
+
+    # Set the timezone for Chile
+    chile_timezone = pytz.timezone('Chile/Continental')
+
+    # Get the current UTC time
+    current_utc_time = datetime.now(pytz.utc)
+
+    # Convert the UTC time to Chile timezone
+    chile_time = current_utc_time.astimezone(chile_timezone)
+
+    # Get the -03 from the timezone offset
+    timezone_offset = chile_time.strftime('%z')
+    timezone_offset = timezone_offset[:3]
+
+    # Convert timezone_offset to an integer
+    timezone_offset = int(timezone_offset)
+
+    # If timezone_offset is negative, multiply by -1
+    if timezone_offset < 0:
+        timezone_offset *= -1
+
+    # Create a timedelta object with the timezone offset
+    td = timedelta(hours=timezone_offset)
+
+    # ---------------------------- Convert UTC to Chile Time ----------------------------
+    df['acq_time'] = pd.to_datetime(df['acq_time'], format='%H:%M:%S').dt.time
+    # Subtract timedelta
+    df['acq_time'] = pd.to_datetime(df['acq_time'], format='%H:%M:%S') - td
+    # Extract time component
+    df['acq_time'] = df['acq_time'].dt.time
+
+    # Get a variable to show in the app
+    info_updated_time = df['acq_time'].max().strftime('%H:%M:%S')
+    info_updated_date = df['acq_date'].max()
+    
+    # --------------------------- Show the data in a map using Streamlit ---------------------------
+    st.write(f"Última actualización satelital: {info_updated_date} - {info_updated_time} (hora local de Chile)")
 
     # Mostrar los datos en un mapa usando Streamlit
     st.map(df)
