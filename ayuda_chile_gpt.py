@@ -177,7 +177,7 @@ def page4():
         st.write("Datos de personas desaparecidas:")
         st.write(df)
     except Exception as e:
-        st.write(f"Error al cargar los datos del Excel: {e}")
+        st.write(f"Error al cargar los datos: {e}")
         
 #sidebar
 PAGES = {
