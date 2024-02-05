@@ -1,3 +1,4 @@
 streamlit
 judini
 semantic-router
+langchain

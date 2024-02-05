@@ -9,64 +9,72 @@ from semantic_router import Route
 from semantic_router.encoders import CohereEncoder
 from semantic_router.layer import RouteLayer
 import pandas as pd
+from langchain.agents import Tool, initialize_agent
+from langchain.chains import LLMChain
+from langchain.prompts import PromptTemplate
+from langchain.chat_models import ChatOpenAI
+from langchain.chains.conversation.memory import ConversationBufferWindowMemory
+from helper_utils import capture_and_display_output
 from dotenv import load_dotenv
 load_dotenv()
 
-api_key= os.getenv("CODEGPT_API_KEY")
-agent_id= os.getenv("CODEGPT_AGENT_ID")
+# set API Key
+codegpt_api_key= os.getenv("CODEGPT_API_KEY")
+# Set API base URL
+codegpt_api_base = os.getenv("CODEGPT_API_BASE")
+
+# set ID de Agentes
+codegpt_acopio_agent_id= os.getenv("CODEGPT_ACOPIO_AGENT_ID")
+codegpt_fibe_agent_id= os.getenv("CODEGPT_FIBE_AGENT_ID")
+
 st.set_page_config(layout="centered")
 
-# retomar cuando se pase del free trail
-# create the encoder
-#encoder = CohereEncoder()
+# create the prompt template to the tool
+execute_task_prompt = PromptTemplate(
+    template="""Given the following overall question `{input}`.
 
-# we could use this as a guide for our chatbot to avoid political conversations
-# emergencia = Route(
-#     name="ayuda_chile",
-#     utterances=[
-#         "¿Qué se sabe sobre la emergencia del incendio?",
-#         "¡La quinta región de Chile se está quemando!",
-#         "¿Está controlado el incendio en la quinta región?",
-#         "¿Cómo puedo ayudar con la emergencia del incendio en la quinta región?",
-#         "Cuéntame más sobre el incendio en la quinta región.",
-#         "¿Quién está luchando contra el incendio en la quinta región?",
-#         "¿Cómo comenzó el incendio en la quinta región?",
-#         "¿Cuánto daño ha causado el incendio en la quinta región?",
-#         "¿Existen planes de recuperación para la quinta región después del incendio?",
-#         "¿Cuánta gente ha sido afectada por el incendio en la quinta región?",
-#         "¿que centro de ayuda hay en santiago?",
-#         "¿Donde hay centros de Ayuda?",
-#         "Quiero ayudar",
-#         "Cómo puedo ayudar?",
-#         "Donde puedo ayudar?",
-#         "Quiero donar",
-#         "Cómo puedo donar?",
-#         "Donde puedo donar?",
-#         "Quiero hacer una donación",
-#         "Cómo puedo hacer una donación?",
-#         "Donde puedo hacer una donación?",
-#         "Quiero donar dinero",
-#         "Cómo puedo donar dinero?",
-#         "Donde puedo donar dinero?",
-#         "Quiero donar ropa",
-#         "Cómo puedo donar ropa?",
-#         "Donde puedo donar ropa?",
-#         "Quiero donar comida",
-#         "Cómo puedo donar comida?",
-#         "Donde puedo donar comida?",
-#         "Quiero donar medicinas",
-#         "Cómo puedo donar medicinas?",
-#         "Donde puedo donar medicinas?",
-#         "Quiero donar sangre",
-#         "Cómo puedo donar sangre?",
-#         "Donde puedo donar sangre?",
-#         "Quiero donar tiempo",
-#         "Cómo puedo donar tiempo?",
-#     ],
-# )
+    Perform the task by understanding the problem, extracting variables, and being smart
+    and efficient. Write a detailed response that address the task.
+    When confronted with choices, make a decision yourself with reasoning.
+    """,
+    input_variables=["input"],
+)
 
-# # creamos las rutas
-# routes = [emergencia]
+# Create a ChatOpenAI object with the retrieved API key, API base URL, and agent ID
+llm_acopio = ChatOpenAI(openai_api_key=codegpt_api_key,
+                openai_api_base=codegpt_api_base,
+                model=codegpt_acopio_agent_id, verbose=True)
+llm_chain_acopio = LLMChain(llm=llm_acopio, prompt=execute_task_prompt)
+
+acopio_agent_tool = Tool(
+    name='AGENTE_ACOPIO',
+    func=llm_chain_acopio.run,
+    description="Útil para cuando necesitas responder preguntas sobre Centros de Acopio"
+) 
+
+# Create a ChatOpenAI object with the retrieved API key, API base URL, and agent ID
+llm_fibe = ChatOpenAI(openai_api_key=codegpt_api_key,
+                openai_api_base=codegpt_api_base,
+                model=codegpt_fibe_agent_id, verbose=True)
+llm_chain_fibe = LLMChain(llm=llm_fibe, prompt=execute_task_prompt)
+
+fibe_agent_tool = Tool(
+    name='AGENTE_ACOPIO',
+    func=llm_chain_fibe.run,
+    description="Útil para cuando necesitas responder preguntas sobre la ficha La Ficha Básica de Emergencia (FIBE)"
+) 
+
+# agregamos todos los tools al array
+tools = [acopio_agent_tool,fibe_agent_tool]
+
+#memory
+memory = ConversationBufferWindowMemory(
+    memory_key="chat_history",
+    k=3,
+    return_messages=True
+)
+
+llm_openai = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
 
 # agrega dos columnas
 col1, col2 = st.columns([2,3])
@@ -86,52 +94,23 @@ st.markdown('---')
 
 def page1():
     st.header("Consulta a AyudaChileGPT")
+    form = st.form('AgentsTools')
+    question = form.text_input("Ingresa tu consulta", "")
+    btn = form.form_submit_button("Enviar")
 
-    
-    # Initialize chat history
-    if "messages" not in st.session_state:
-        st.session_state.messages = []
-
-    # Display chat messages from history on app rerun
-    for message in st.session_state.messages:
-        with st.chat_message(message["role"]):
-            st.markdown(message["content"])
-
-    # Button to change value of chat
-    if st.button('Cambiar valor del chat'):
-        prompt = 'Nuevo valor del chat'
-
-
-    # Accept user input
-    if prompt := st.chat_input("Consulta sobre la emergencia"):
-        # rl = RouteLayer(encoder=encoder, routes=routes)
-        # route = rl(prompt).name
-
-        # Add user message to chat history
-        st.session_state.messages.append({"role": "user", "content": prompt})
-        # Display user message in chat message container
-        with st.chat_message("user"):
-            st.markdown(prompt)
-
-        # Display assistant response in chat message container
-        with st.chat_message("assistant"):
-            with st.spinner('Cargando respuesta...'):
-                message_placeholder = st.empty()
-                full_response = ""
-                messages = st.session_state.messages
-                #st.write(route)
-                if True: # (route == 'ayuda_chile'): # retomar cuando se pase del free trail
-                    completion = Completion(api_key)
-                    response_completion = completion.create(agent_id, messages, stream=False)
-                else:
-                    response_completion = "Estoy aquí para ayudarte en relación a la emergencia"
-                    
-                for response in response_completion:
-                    time.sleep(0.05)
-                    full_response += (response or "")
-                    message_placeholder.markdown(full_response + "▌")       
-                message_placeholder.markdown(full_response)
-        st.session_state.messages.append({"role": "assistant", "content": full_response})
+    if btn:
+        st.markdown("### Encontrando Agentes:")
+        with st.spinner("Loading"):
+            agent = initialize_agent(
+                agent="chat-conversational-react-description",
+                tools=tools,
+                llm=llm_openai,
+                verbose=True,
+                max_iteration=3,
+                early_stop_method="generate",
+                memory=memory
+            )
+            st.write(agent.invoke(question))
 
 def page2():
     st.header("Centros de ayuda verificados")
@@ -260,8 +239,7 @@ def page4():
 PAGES = {
     "Chat AyudaChileGPT": page1,
     "Centros de Ayuda Verificados": page2,
-    "Mapa de Incendios": page3,
-    "Donaciones": page4
+    "Mapa de Incendios": page3
 }
 
 st.sidebar.title('Navegación')
