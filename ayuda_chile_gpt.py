@@ -123,7 +123,6 @@ def page1():
                 message_placeholder = st.empty()
                 full_response = ""
                 messages = st.session_state.messages
-                #st.write(route)
                 
                 completion = Completion(codegpt_api_key)
                 response_completion = completion.create(codegpt_acopio_agent_id, messages, stream=False)
