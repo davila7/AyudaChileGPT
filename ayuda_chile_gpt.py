@@ -140,7 +140,7 @@ def page2():
     # Cargar el archivo csv
     @st.cache_data
     def load_data():
-        return pd.read_csv('assets/centros_verificados_v4.csv')
+        return pd.read_csv('assets/centros_verificados_v5_urls.csv')
 
     # Cargar los datos
     df = load_data()
@@ -151,8 +151,19 @@ def page2():
     # Filtrar el dataframe 
     df = df[df.apply(lambda row: row.astype(str).str.lower().str.contains(filtro.lower()), axis = 1).any(axis = 1)]
 
-    # Mostrar el dataframe
-    st.write(df)
+
+     # Mostrar el dataframe
+    if not df.empty:
+        # Convertir la columna de ubicación a enlaces
+        df['Ubicación'] = df['Ubicación'].apply(lambda x: f'<a target="_blank" href="{x}">{x}</a>')
+        # Mostrar el DataFrame con enlaces
+        st.write(df, unsafe_allow_html=True)
+    else:
+        st.write("No se encontraron resultados para el filtro aplicado.")
+
+    # Incrustar el mapa de Google Maps
+    map_url = "https://www.google.com/maps/d/embed?mid=13KKV0Sy81G2L0Vz5lS9E90YysNi71BQ&ehbc=2E312F&noprof=1"
+    components.iframe(map_url, width=640, height=480)
 
 def page3():
     st.title('Mapa de la Nasa con focos de incendios')
