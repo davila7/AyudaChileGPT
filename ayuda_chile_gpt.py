@@ -148,16 +148,15 @@ def page2():
     # Input de texto 
     filtro = st.text_input('Filtrar información')
 
-    # Filtrar el dataframe 
-    df = df[df.apply(lambda row: row.astype(str).str.lower().str.contains(filtro.lower()), axis = 1).any(axis = 1)]
+   # Filtrar el dataframe 
+    df_filtered = df[df.apply(lambda row: row.astype(str).str.lower().str.contains(filtro.lower()), axis = 1).any(axis = 1)]
 
-
-     # Mostrar el dataframe
-    if not df.empty:
-        # Convertir la columna de ubicación a enlaces
-        df['Ubicación'] = df['Ubicación'].apply(lambda x: f'<a target="_blank" href="{x}">{x}</a>')
+    # Mostrar el dataframe
+    if not df_filtered.empty:
+        # Crear una nueva columna con enlaces HTML
+        df_filtered['Mapa enlace'] = df_filtered['Mapa'].apply(lambda x: f'<a target="_blank" href="{x}">{x}</a>')
         # Mostrar el DataFrame con enlaces
-        st.write(df, unsafe_allow_html=True)
+        st.write(df_filtered.to_html(escape=False), unsafe_allow_html=True)
     else:
         st.write("No se encontraron resultados para el filtro aplicado.")
 
