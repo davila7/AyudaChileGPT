@@ -148,7 +148,7 @@ def page2():
     # Input de texto 
     filtro = st.text_input('Filtrar información')
 
-   # Filtrar el dataframe 
+    # Filtrar el dataframe 
     df_filtered = df[df.apply(lambda row: row.astype(str).str.lower().str.contains(filtro.lower()), axis = 1).any(axis = 1)]
 
     # Mostrar el dataframe
@@ -156,13 +156,21 @@ def page2():
         # Crear una nueva columna con enlaces HTML
         df_filtered['Mapa enlace'] = df_filtered['Mapa'].apply(lambda x: f'<a target="_blank" href="{x}">{x}</a>')
         # Mostrar el DataFrame con enlaces
-        st.write(df_filtered.to_html(escape=False), unsafe_allow_html=True)
+        st.write(df_filtered.drop(columns=['Mapa']).iloc[:, 1:], unsafe_allow_html=True)
+
+        # Paginar los resultados
+        show_more = st.checkbox('Mostrar más')
+        if not show_more:
+            st.write(df_filtered.drop(columns=['Mapa']).iloc[:, 1:][:10], unsafe_allow_html=True)
+        else:
+            st.write(df_filtered.drop(columns=['Mapa']).iloc[:, 1:], unsafe_allow_html=True)
     else:
         st.write("No se encontraron resultados para el filtro aplicado.")
 
     # Incrustar el mapa de Google Maps
     map_url = "https://www.google.com/maps/d/embed?mid=13KKV0Sy81G2L0Vz5lS9E90YysNi71BQ&ehbc=2E312F&noprof=1"
     components.iframe(map_url, width=640, height=480)
+
 
 def page3():
     st.title('Mapa de la Nasa con focos de incendios')
