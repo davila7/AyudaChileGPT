@@ -86,6 +86,8 @@ st.markdown('---')
 
 def page1():
     st.header("Consulta a AyudaChileGPT")
+
+    
     # Initialize chat history
     if "messages" not in st.session_state:
         st.session_state.messages = []
@@ -94,6 +96,11 @@ def page1():
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
+
+    # Button to change value of chat
+    if st.button('Cambiar valor del chat'):
+        prompt = 'Nuevo valor del chat'
+
 
     # Accept user input
     if prompt := st.chat_input("Consulta sobre la emergencia"):
@@ -190,7 +197,7 @@ PAGES = {
     "Chat AyudaChileGPT": page1,
     "Centros de Ayuda Verificados": page2,
     "Mapa de Incendios": page3,
-    "Lista de personas desaparecidas": page4
+    "Donaciones": page4
 }
 
 st.sidebar.title('Navegación')
