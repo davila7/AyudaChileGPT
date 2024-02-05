@@ -169,7 +169,7 @@ def page4():
     st.title("Lista de personas desaparecidas")
 
     # URL del archivo Excel en la nube
-    excel_url = "URL_DEL_EXCEL_EN_LA_NUBE"
+    excel_url = "assets/personas_desaparecidas.csv"
 
     # Cargar los datos desde el Excel en la nube
     try:
