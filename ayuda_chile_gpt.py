@@ -68,13 +68,13 @@ execute_task_prompt = PromptTemplate(
 # tools = [acopio_agent_tool]
 
 #memory
-memory = ConversationBufferWindowMemory(
-    memory_key="chat_history",
-    k=3,
-    return_messages=True
-)
+# memory = ConversationBufferWindowMemory(
+#     memory_key="chat_history",
+#     k=3,
+#     return_messages=True
+# )
 
-llm_openai = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
+# llm_openai = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
 
 # agrega dos columnas
 col1, col2 = st.columns([2,3])
