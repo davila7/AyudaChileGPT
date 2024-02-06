@@ -22,10 +22,12 @@
     </div>
 </div>
 
-| Separar tu contenido | Fácil de entender |
+| | |
 | --- | --- |
-| Algunas ideas... <br> Separar el texto en dos columnas es ideal para crear historias o hacer una especie de libro virtual, así como también traducir. Por lo general, yo lo uso para traducir al inglés en un solo post. | Al principio me parecía complicado de hacer, pero investigué un poco sobre Markdown y entendí para qué sirven esos códigos. <br> Tú puedes empezar solo copiando los códigos y pegándolos en tu post, pero la idea es que aprendas a hacerlo manualmente. |
-
+| ![Logo](/assets/logo_v2_square.jpg) | Agente IA con información verificada sobre la emergencia en Chile, ¿Cómo ayudar?
+  - Mejora en el código fuente, ¡el proyecto es Open Source!
+  - Agrega y/o verifica información en el GDrive de archivos.
+  - Comparte el agente! |
 
 
 
