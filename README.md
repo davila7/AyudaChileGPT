@@ -21,7 +21,7 @@ Puedes ayudar realizando las siguientes acciones:
 
 Instala las siguientes librerías
 ```
-pip install -r requirements
+pip install -r requirements.txt
 ```
 
 - Streamlit: Esta librería se utiliza para crear una interfaz de usuario interactiva para el agente AyudaChileGPT.
