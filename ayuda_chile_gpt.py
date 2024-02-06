@@ -357,12 +357,32 @@ def page4():
         st.write(df)
     except Exception as e:
         st.write(f"Error al cargar los datos del Excel: {e}")
+
+def page5():
+    st.header("Establecimientos Habilitados Mineduc")
+    st.write("Fuente: https://www.mineduc.cl/reporte-mineduc-por-incendios-establecimientos-apoyan-la-emergencia/")
+
+    # Cargar el archivo csv
+    @st.cache_data
+    def load_data():
+        return pd.read_csv('assets/authorized_establishments.csv')
+
+    # Cargar los datos
+    df = load_data()
+
+    filter = st.text_input('Filtrar información')
+
+    df = df[df.apply(lambda row: row.astype(str).str.lower().str.contains(filter.lower()), axis=1).any(axis=1)]
+
+    st.write(df)
         
 #sidebar
 PAGES = {
     "Chat AyudaChileGPT": page1,
     "Centros de Ayuda Verificados": page2,
-    "Mapa de Incendios": page3
+    "Mapa de Incendios": page3,
+    # "Personas Desaparecidas": page4,
+    "Establecimientos Habilitados Mineduc": page5
 }
 
 st.sidebar.title('Navegación')
