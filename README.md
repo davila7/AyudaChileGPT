@@ -24,9 +24,9 @@ Agente IA Open-Source para atender consultas sobre la emergencia en Chile 🚨 �
 | ![Logo](/assets/logo_v2_square.jpg) | <h6>Agente IA con información verificada sobre la emergencia en Chile, [¿Cómo ayudar?](#c%C3%B3mo-ayudar-)<br><br> - Mejora en el código fuente, el proyecto es Open Source. <br> - Agrega y/o verifica información en el GDrive de archivos. <br> - Comparte el agente! </h6> |
 | :--- | :--- |
 
-[![Twitter](https://img.shields.io/badge/Compartir%20en-Twitter-blue?logo=twitter&style=flat-square)](https://twitter.com/intent/tweet?url=http://ayudachilegpt.cl/&text=AyudaChileGPT%20en%20Twitter&&hashtags=chile,auidachilegpt,chileayuda,emergencia)
-[![Facebook](https://img.shields.io/badge/Compartir%20en-Facebook-blue?logo=facebook&style=flat-square)](https://www.facebook.com/sharer/sharer.php?u=http://ayudachilegpt.cl/)
-[![LinkedIn](https://img.shields.io/badge/Compartir%20en-LinkedIn-blue?logo=linkedin&style=flat-square)](https://www.linkedin.com/shareArticle?url=http://ayudachilegpt.cl/&title=AyudaChileGPT%20en%20LinkedIn&summary=AyudaChileGPT%20en%20LinkedIn)
+[![Twitter](https://img.shields.io/badge/Compartir%20en-Twitter-blue?logo=twitter&style=plastic)](https://twitter.com/intent/tweet?url=http://ayudachilegpt.cl/&text=AyudaChileGPT%20en%20Twitter&&hashtags=chile,auidachilegpt,chileayuda,emergencia)
+[![Facebook](https://img.shields.io/badge/Compartir%20en-Facebook-blue?logo=facebook&style=plastic)](https://www.facebook.com/sharer/sharer.php?u=http://ayudachilegpt.cl/)
+[![LinkedIn](https://img.shields.io/badge/Compartir%20en-LinkedIn-blue?logo=linkedin&style=plastic)](https://www.linkedin.com/shareArticle?url=http://ayudachilegpt.cl/&title=AyudaChileGPT%20en%20LinkedIn&summary=AyudaChileGPT%20en%20LinkedIn)
 
 ![Main Language](https://img.shields.io/github/languages/top/davila7/AyudaChileGPT.svg?style=flat&color=blue)
 [![Open Source? Yes!](https://badgen.net/badge/Open%20Source%20%3F/Yes%21/blue?icon=github)](https://github.com/Naereen/badges/)
