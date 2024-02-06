@@ -10,7 +10,7 @@
   - Comparte el agente! |
 -->
 
-| | |
+
 | --- | --- |
 | ![Logo](/assets/logo_v2_square.jpg) | Agente IA con información verificada sobre la emergencia en Chile, ¿Cómo ayudar? <br> Mejora en el código fuente, ¡el proyecto es Open Source! <br> Agrega y/o verifica información en el GDrive de archivos. <br> Comparte el agente! |
 
