@@ -1,7 +1,7 @@
 ### AyudaChileGPT 🤖
 ##### Agente IA open-soruce para atender consultas sobre la emergencia en Chile 🚨 🇨🇱
 
-[![AyudaChileGPT Badge](https://custom-icon-badges.demolab.com/badge/AyudaChileGPT-blue.svg?logo=ayudachilegpt2&logoColor=white&style=plastic)](#)
+[![AyudaChileGPT Badge](https://custom-icon-badges.demolab.com/badge/AyudaChileGPT-blue.svg?logo=ayudachilegpt4&logoColor=white&style=plastic)](#)
 
 <sub>
   
