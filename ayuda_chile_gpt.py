@@ -49,7 +49,6 @@ llm_acopio = ChatOpenAI(openai_api_key=codegpt_api_key,
                 openai_api_base=codegpt_api_base,
                 model=codegpt_acopio_agent_id, verbose=True)
 llm_chain_acopio = LLMChain(llm=llm_acopio, prompt=execute_task_prompt)
-
 acopio_agent_tool = Tool(
     name='Centros de Acopio',
     func=llm_chain_acopio.run,
@@ -61,7 +60,6 @@ llm_fibe = ChatOpenAI(openai_api_key=codegpt_api_key,
                 openai_api_base=codegpt_api_base,
                 model=codegpt_fibe_agent_id, verbose=True)
 llm_chain_fibe = LLMChain(llm=llm_fibe, prompt=execute_task_prompt)
-
 fibe_agent_tool = Tool(
     name='FIBE',
     func=llm_chain_fibe.run,
