@@ -21,7 +21,7 @@ Agente IA Open-Source para atender consultas sobre la emergencia en Chile 🚨 �
 -->
 
 
-| ![Logo](/assets/logo_v2_square.jpg) | <h6>Agente IA con información verificada sobre la emergencia en Chile, [¿Cómo ayudar?](#c%C3%B3mo-ayudar-)<br> Mejora en el código fuente, el proyecto es Open Source. <br> Agrega y/o verifica información en el GDrive de archivos. <br> Comparte el agente!</h6> |
+| ![Logo](/assets/logo_v2_square.jpg) | <h6>Agente IA con información verificada sobre la emergencia en Chile, [¿Cómo ayudar?](#c%C3%B3mo-ayudar-)<br> <em>Mejora en el código fuente, el proyecto es Open Source. <br> Agrega y/o verifica información en el GDrive de archivos. <br> Comparte el agente!</em></h6> |
 | :--- | :--- |
 
 
