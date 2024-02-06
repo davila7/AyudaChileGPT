@@ -10,11 +10,12 @@ from semantic_router import Route
 from semantic_router.encoders import CohereEncoder
 from semantic_router.layer import RouteLayer
 import pandas as pd
-from langchain.agents import Tool, initialize_agent
+from langchain.agents import AgentType, Tool, initialize_agent
 from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
 from langchain.chat_models import ChatOpenAI
 from langchain.chains.conversation.memory import ConversationBufferWindowMemory
+from langchain_community.callbacks import StreamlitCallbackHandler
 from helper_utils import capture_and_display_output
 from dotenv import load_dotenv
 load_dotenv()
@@ -23,59 +24,64 @@ load_dotenv()
 codegpt_api_key= os.getenv("CODEGPT_API_KEY")
 # Set API base URL
 codegpt_api_base = os.getenv("CODEGPT_API_BASE")
+#set API base dev URL
+codegpt_api_base_dev = os.getenv("CODEGPT_API_BASE_DEV")
 
 # set ID de Agentes
 codegpt_acopio_agent_id= os.getenv("CODEGPT_ACOPIO_AGENT_ID")
 codegpt_fibe_agent_id= os.getenv("CODEGPT_FIBE_AGENT_ID")
 
-st.set_page_config(layout="centered")
 
+# Langchain Agents and Tools
 # create the prompt template to the tool
 execute_task_prompt = PromptTemplate(
-    template="""Given the following overall question `{input}`.
+    template="""Dada la siguiente pregunta relacionada al Incendio en la Quinta Región de Chile `{input}`.
 
-    Perform the task by understanding the problem, extracting variables, and being smart
-    and efficient. Write a detailed response that address the task.
-    When confronted with choices, make a decision yourself with reasoning.
+    Realice la tarea entendiendo el problema, extrayendo variables, siendo inteligente
+    y eficiente. Escriba una respuesta detallada que aborde la tarea.
+    Cuando se enfrente a opciones, tome una decisión usted mismo con razonamiento.
     """,
     input_variables=["input"],
 )
 
 # Create a ChatOpenAI object with the retrieved API key, API base URL, and agent ID
-# llm_acopio = ChatOpenAI(openai_api_key=codegpt_api_key,
-#                 openai_api_base=codegpt_api_base,
-#                 model=codegpt_acopio_agent_id, verbose=True)
-# llm_chain_acopio = LLMChain(llm=llm_acopio, prompt=execute_task_prompt)
+llm_acopio = ChatOpenAI(openai_api_key=codegpt_api_key,
+                openai_api_base=codegpt_api_base,
+                model=codegpt_acopio_agent_id, verbose=True)
+llm_chain_acopio = LLMChain(llm=llm_acopio, prompt=execute_task_prompt)
 
-# acopio_agent_tool = Tool(
-#     name='AGENTE_ACOPIO',
-#     func=llm_chain_acopio.run,
-#     description="Útil para cuando necesitas responder preguntas sobre Centros de Acopio"
-# ) 
+acopio_agent_tool = Tool(
+    name='Centros de Acopio',
+    func=llm_chain_acopio.run,
+    description="Útil para cuando necesitas responder preguntas sobre Centros de Acopio"
+) 
 
-# # Create a ChatOpenAI object with the retrieved API key, API base URL, and agent ID
-# llm_fibe = ChatOpenAI(openai_api_key=codegpt_api_key,
-#                 openai_api_base=codegpt_api_base,
-#                 model=codegpt_fibe_agent_id, verbose=True)
-# llm_chain_fibe = LLMChain(llm=llm_fibe, prompt=execute_task_prompt)
+# Create a ChatOpenAI object with the retrieved API key, API base URL, and agent ID
+llm_fibe = ChatOpenAI(openai_api_key=codegpt_api_key,
+                openai_api_base=codegpt_api_base,
+                model=codegpt_fibe_agent_id, verbose=True)
+llm_chain_fibe = LLMChain(llm=llm_fibe, prompt=execute_task_prompt)
 
-# acopio_agent_tool = Tool(
-#     name='AGENTE_ACOPIO',
-#     func=llm_chain_fibe.run,
-#     description="Útil para cuando necesitas responder preguntas sobre la ficha La Ficha Básica de Emergencia (FIBE)"
-# ) 
+fibe_agent_tool = Tool(
+    name='FIBE',
+    func=llm_chain_fibe.run,
+    description="Útil para cuando necesitas responder preguntas sobre la ficha La Ficha Básica de Emergencia (FIBE)"
+) 
 
-# # agregamos todos los tools al array
-# tools = [acopio_agent_tool]
+# agregamos todos los tools al array
+tools = [acopio_agent_tool, fibe_agent_tool]
 
-#memory
-# memory = ConversationBufferWindowMemory(
-#     memory_key="chat_history",
-#     k=3,
-#     return_messages=True
-# )
+# memory
+memory = ConversationBufferWindowMemory(
+    memory_key="chat_history",
+    k=3,
+    return_messages=True
+)
 
-# llm_openai = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
+llm_openai = ChatOpenAI(model="gpt-4-0125-preview", temperature=0)
+
+
+st.set_page_config(layout="centered")
 
 # agrega dos columnas
 col1, col2 = st.columns([2,3])
@@ -94,10 +100,44 @@ st.write("Proyecto open-source: "+ "https://github.com/davila7/AyudaChileGPT")
 st.markdown('---')
 
 def page1():
-    st.header("Consulta a AyudaChileGPT")
+    # agent = initialize_agent(
+    # tools, llm_openai, max_iteration=3, agent=AgentType.CHAT_CONVERSATIONAL_REACT_DESCRIPTION, verbose=True, handle_parsing_errors=True
+    # )
+
+    # if prompt := st.chat_input():
+    #     st.chat_message("user").write(prompt)
+    #     with st.chat_message("assistant"):
+    #         with st.spinner("Obteniendo información"):
+    #             st_callback = StreamlitCallbackHandler(st.container())
+    #             response = agent.invoke({
+    #                 "input": prompt,
+    #                 # Notice that chat_history is a string, since this prompt is aimed at LLMs, not chat models
+    #                 "chat_history": "Human: Hi! My name is Bob\nAI: Hello Bob! Nice to meet you",
+    #             }, 
+    #             callbacks=[st_callback]
+    #             )
+    #             if response == 'N/A':
+    #                 st.write('Realiza cualquier consulta relacionada con la emergencia en Chile. Ejemplo: ¿Cómo puedo ayudar?')
+    #             else:
+    #                 st.markdown(response)
+
+    # if btn:
+    #     st.markdown("### Response Agent AI")
+    #     with st.spinner("Loading"):
+    #         agent = initialize_agent(
+    #             agent="chat-conversational-react-description",
+    #             tools=tools,
+    #             llm=llm_openai,
+    #             verbose=True,
+    #             max_iteration=3,
+    #             early_stop_method="generate",
+    #             memory=memory
+    #         )
+    #         st.write(agent.invoke(question))
+    # st.header("Consulta a AyudaChileGPT")
 
     
-    # Initialize chat history
+    # # Initialize chat history
     if "messages" not in st.session_state:
         st.session_state.messages = []
 
@@ -106,11 +146,8 @@ def page1():
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
 
-
     # Accept user input
     if prompt := st.chat_input("Consulta sobre la emergencia"):
-        # rl = RouteLayer(encoder=encoder, routes=routes)
-        # route = rl(prompt).name
 
         # Add user message to chat history
         st.session_state.messages.append({"role": "user", "content": prompt})
@@ -124,9 +161,28 @@ def page1():
                 message_placeholder = st.empty()
                 full_response = ""
                 messages = st.session_state.messages
-                
-                completion = Completion(codegpt_api_key)
-                response_completion = completion.create(codegpt_acopio_agent_id, messages, stream=False)
+
+                # semantic router
+                # JSON que vas a enviar en el cuerpo de la solicitud POST
+                payload = {
+                    "prompt": prompt
+                }
+                # Realiza la solicitud POST
+                url = codegpt_api_base_dev+"/labs/rag"
+                response = requests.post(url, json=payload)
+                # Verificar si la solicitud fue exitosa
+                if response.status_code == 200:
+                    # La respuesta de la solicitud es un JSON, así que usamos .json() para decodificarlo
+                    data = response.json()
+
+                    # Validar si la clave 'requires_rag' está presente y es True
+                    if data.get("requires_rag") == True:
+                        completion = Completion(codegpt_api_key)
+                        response_completion = completion.create(codegpt_acopio_agent_id, messages, stream=False)
+                    else:
+                        response_completion = "Realiza cualquier consulta sobre la emergencia en Chile"
+                else:
+                    response_completion = "Error RAG: Vuelve a intentarlo en unos minutos más."
                 
                 for response in response_completion:
                     time.sleep(0.05)
@@ -149,6 +205,36 @@ def page2():
     # Cargar los datos
     df = load_data()
 
+    # Incrustar el mapa de Google Maps
+    map_url = "https://www.google.com/maps/d/embed?mid=13KKV0Sy81G2L0Vz5lS9E90YysNi71BQ&ehbc=2E312F&noprof=1"
+    components.iframe(map_url, width=640, height=480)
+
+
+    # Tabla de datos
+    # estilos
+    style = """
+    <style>
+        .dataframe {
+            border-collapse: collapse;
+            padding: 10px;
+            width: 100%;
+        }
+        .dataframe th, .dataframe td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        @media screen and (max-width: 600px) {
+            .dataframe tr {
+                border-bottom: none !important;
+            }
+            .dataframe td {
+                border-bottom: 1px solid #ddd;
+            }
+        }
+    </style>
+    """
+
+
     # Input de texto 
     filtro = st.text_input('Filtrar información')
 
@@ -166,12 +252,6 @@ def page2():
         st.write(df_filtered.to_html(escape=False), unsafe_allow_html=True)
     else:
         st.write("No se encontraron resultados para el filtro aplicado.")
-    st.write("")
-    st.write("")
-    # Incrustar el mapa de Google Maps
-    map_url = "https://www.google.com/maps/d/embed?mid=13KKV0Sy81G2L0Vz5lS9E90YysNi71BQ&ehbc=2E312F&noprof=1"
-    components.iframe(map_url, width=640, height=480)
-
 
 def page3():
     st.title('Mapa de la Nasa con focos de incendios')
