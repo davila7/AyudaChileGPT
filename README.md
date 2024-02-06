@@ -1,5 +1,5 @@
 ### AyudaChileGPT 🤖
-##### Agente IA open-soruce para atender consultas sobre la emergencia en Chile :star: 
+##### Agente IA open-soruce para atender consultas sobre la emergencia en Chile 🚨 :star: 🇨🇱
 
 <img width="977" alt="Captura de pantalla 2024-02-04 a las 08 36 41" src="https://github.com/davila7/AyudaChileGPT/assets/6216945/16cdfa24-6cd9-41df-821a-66a34bd874ad">
 
