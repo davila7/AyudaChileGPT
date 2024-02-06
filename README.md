@@ -1,6 +1,6 @@
 ### AyudaChileGPT 🤖
+##### Agente IA open-soruce para atender consultas sobre la emergencia en Chile
 
-#### Agente IA open-soruce para atender consultas sobre la emergencia en Chile
 <img width="977" alt="Captura de pantalla 2024-02-04 a las 08 36 41" src="https://github.com/davila7/AyudaChileGPT/assets/6216945/16cdfa24-6cd9-41df-821a-66a34bd874ad">
 
 <!-- 
@@ -8,7 +8,6 @@
 -->
 ![Main Language](https://img.shields.io/github/languages/top/davila7/AyudaChileGPT.svg?style=flat&color=blue)
 [![Open Source? Yes!](https://badgen.net/badge/Open%20Source%20%3F/Yes%21/blue?icon=github)](https://github.com/Naereen/badges/)
-
 
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 
@@ -68,6 +67,13 @@ Esto abrirá una interfaz de usuario en tu navegador web. Simplemente escribe tu
 6. Conectar con API que proporcione una lista de números de contacto de emergencia locales
 7. Mejorar la capacidad de hacer preguntas sobre la base de datos de emergencias.
 
+##### 🤝 Soporte y Contribuciones
+
+Si encuentras útil este proyecto y deseas apoyar su desarrollo, hay varias formas en las que puedes contribuir:
+
+- **Contribuciones de Código**: Si eres un desarrollador, puedes contribuir enviando pull requests con correcciones de errores, nuevas características o mejoras. Siéntete libre de bifurcar el proyecto y crear tu propia rama para trabajar en ella.
+- **Informes de Errores y Retroalimentación**: Si encuentras algún problema o tienes sugerencias para mejorar, por favor abre un problema en el repositorio de GitHub del proyecto. Tu retroalimentación es valiosa para hacer que el proyecto sea mejor.
+- **Documentación**: Siempre se aprecia mejorar la documentación. Si encuentras alguna laguna o tienes sugerencias para mejorar la documentación del proyecto, puedes informarlo.
 
 ##### Versión ChatGPT
 En la versión ChatGPT, el agente AyudaChileGPT se ha mejorado para proporcionar una experiencia de chat más interactiva y conversacional. El agente ahora puede mantener una conversación más fluida con el usuario, lo que lo hace más accesible y fácil de usar.
