@@ -49,7 +49,7 @@ Puedes ayudar realizando las siguientes acciones:
   
 - Comparte el link del Agente para que más personas puedan tener acceso a la información actualizada sobre la emergencia que está sufriendo Chile 🇨🇱
 
-##### Cómo usar 🤔
+##### ¿Cómo usar? 🤔
 
 Instala las siguientes librerías
 ```
