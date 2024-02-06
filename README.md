@@ -1,5 +1,5 @@
 ### AyudaChileGPT 🤖
-##### Agente IA open-soruce para atender consultas sobre la emergencia en Chile 🚨 :star: 🇨🇱
+##### Agente IA open-soruce para atender consultas sobre la emergencia en Chile 🚨 🇨🇱
 <!--
 <img width="977" alt="Captura de pantalla 2024-02-04 a las 08 36 41" src="https://github.com/davila7/AyudaChileGPT/assets/6216945/16cdfa24-6cd9-41df-821a-66a34bd874ad">
 -->
@@ -21,6 +21,20 @@
         - Comparte el agente!</p>
     </div>
 </div>
+
+<div class="pull-left">
+
+<center>Seperar tu contenido </center>
+##### Algunas ideas...
+Separar el texto en dos columnas es ideal para crear historias o hacer una especie de libro virtual, así como tambien traducir. Por lo general, yo lo uso para traducir al ingles en un solo post.
+</div>
+
+<center>Facil de entender</center>
+Al principio me parecia complicado de hacer pero investigue un poco sobre Markdown y entendí para que sirven esos codigos.
+Tu puedes empezar solo copiando los codigos y pegandolo en tu post, pero la idea es que aprendas hacerlo manualmente.
+</div>
+</div>
+
 
 
 
