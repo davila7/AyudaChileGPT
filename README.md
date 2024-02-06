@@ -11,6 +11,8 @@
 
 - Donaciones a [Desafío Levantemos Chile](https://desafiolevantemoschile.org/) (Fundación de Apoyo a la Ciudadanía y Emergencias en Chile)
 
+- Donaciones a Fundación [Un Techo para Chile](https://cl.techo.org/)
+
 </sub>
 <br>
 
