@@ -12,7 +12,7 @@
 
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 
-## Descripción
+#### Descripción
 
 AyudaChileGPT es un agente de Inteligencia Artificial que permite responder preguntas relacionadas con la emergencia en Chile. El agente utiliza la tecnología de procesamiento del lenguaje natural mediante la API de 
 [CodeGPT](https://developers.codegpt.co) para entender las preguntas y proporcionar respuestas precisas y útiles.
@@ -20,7 +20,7 @@ AyudaChileGPT es un agente de Inteligencia Artificial que permite responder preg
 El objetivo de AyudaChileGPT es proporcionar información actualizada y confiable sobre la emergencia en Chile, ayudando a las personas a obtener respuestas rápidas y precisas a sus preguntas.
 
 
-## Cómo ayudar
+#### Cómo ayudar
 Puedes ayudar realizando las siguientes acciones:
 
 - Puedes agregar un PR al proyecto si quieres mejorar las funcionalidades del Agente* 
@@ -32,7 +32,7 @@ Puedes ayudar realizando las siguientes acciones:
   
 - Comparte el link del Agente para que más personas puedan tener acceso a la información actualizada sobre la emergencia que está sufriendo Chile 🇨🇱
 
-## Cómo usar
+##### Cómo usar
 
 Instala las siguientes librerías
 ```
@@ -50,7 +50,7 @@ streamlit run ayuda_chile_gpt.py
 
 Esto abrirá una interfaz de usuario en tu navegador web. Simplemente escribe tu pregunta en el campo de texto y presiona el botón "Enviar". El agente procesará tu pregunta y te proporcionará una respuesta en la sección de resultados.
 
-## Funcionalidades
+##### Funcionalidades
 
 - Respuestas precisas: AyudaChileGPT utiliza la tecnología de procesamiento del lenguaje natural para entender las preguntas y proporcionar respuestas precisas y útiles.
 - Información actualizada: El agente se actualiza constantemente con información actualizada sobre la emergencia en Chile para proporcionar respuestas precisas y confiables.
@@ -58,7 +58,7 @@ Esto abrirá una interfaz de usuario en tu navegador web. Simplemente escribe tu
 - Amplia gama de preguntas: El agente está diseñado para responder una amplia gama de preguntas relacionadas con la emergencia en Chile, desde información sobre recursos y ayuda hasta medidas de prevención y estadísticas.
 - Accesibilidad: AyudaChileGPT está disponible en línea y es accesible desde cualquier dispositivo con conexión a internet, lo que lo hace fácil de usar para cualquier persona que necesite información sobre la emergencia en Chile.
 
-## Pendientes
+##### Pendientes
 
 1. Conectar con APIs que entreguen el estado actual de los incendios
 2. Conectar con API que entregue la calidad del aire
@@ -69,7 +69,7 @@ Esto abrirá una interfaz de usuario en tu navegador web. Simplemente escribe tu
 7. Mejorar la capacidad de hacer preguntas sobre la base de datos de emergencias.
 
 
-## Versión ChatGPT
+##### Versión ChatGPT
 En la versión ChatGPT, el agente AyudaChileGPT se ha mejorado para proporcionar una experiencia de chat más interactiva y conversacional. El agente ahora puede mantener una conversación más fluida con el usuario, lo que lo hace más accesible y fácil de usar.
 [AyudaChile GPT 🤖🇨🇱 en ChatGPT](https://chat.openai.com/g/g-G3TvxWdjN-ayudachile-gpt)
 
@@ -79,3 +79,4 @@ En la versión ChatGPT, el agente AyudaChileGPT se ha mejorado para proporcionar
 This project is licensed under the [MIT License](LICENSE).
 
 <sub>Developed from Chile with :heart:</sub>
+
