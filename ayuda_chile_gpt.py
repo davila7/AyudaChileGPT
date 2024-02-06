@@ -168,6 +168,10 @@ def page1():
                 # Realiza la solicitud POST
                 url = codegpt_api_base_dev+"/labs/rag"
                 response = requests.post(url, json=payload)
+                
+                # Inicializa el completion
+                completion = Completion(codegpt_api_key)
+
                 # Verificar si la solicitud fue exitosa
                 if response.status_code == 200:
                     # La respuesta de la solicitud es un JSON, así que usamos .json() para decodificarlo
@@ -175,12 +179,12 @@ def page1():
 
                     # Validar si la clave 'requires_rag' está presente y es True
                     if data.get("requires_rag") == True:
-                        completion = Completion(codegpt_api_key)
                         response_completion = completion.create(codegpt_acopio_agent_id, messages, stream=False)
                     else:
                         response_completion = "Realiza cualquier consulta sobre la emergencia en Chile"
                 else:
-                    response_completion = "Error RAG: Vuelve a intentarlo en unos minutos más."
+                    # si hay error en el servicio de RAG se envía al modelo
+                    response_completion = completion.create(codegpt_acopio_agent_id, messages, stream=False)
                 
                 for response in response_completion:
                     time.sleep(0.05)
