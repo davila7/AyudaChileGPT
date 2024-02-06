@@ -3,11 +3,20 @@
 <!--
 <img width="977" alt="Captura de pantalla 2024-02-04 a las 08 36 41" src="https://github.com/davila7/AyudaChileGPT/assets/6216945/16cdfa24-6cd9-41df-821a-66a34bd874ad">
 -->
-
+<!--
 | ![Logo](/assets/logo_v2_square.jpg) | Agente IA con información verificada sobre la emergencia en Chile, ¿Cómo ayudar?
   - Mejora en el código fuente, ¡el proyecto es Open Source!
   - Agrega y/o verifica información en el GDrive de archivos.
   - Comparte el agente! |
+-->
+
+<div style="display: flex; align-items: center;">
+    <img src="/assets/logo_v2_square.jpg" alt="Logo" width="100" height="100" />
+    <p style="margin-left: 20px;">Agente IA con información verificada sobre la emergencia en Chile, ¿Cómo ayudar?
+    - Mejora en el código fuente, ¡el proyecto es Open Source!
+    - Agrega y/o verifica información en el GDrive de archivos.
+    - Comparte el agente!</p>
+</div>
 
 
 
