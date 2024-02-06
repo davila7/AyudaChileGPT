@@ -1,19 +1,21 @@
 ### AyudaChileGPT 🤖
 ##### Agente IA open-soruce para atender consultas sobre la emergencia en Chile 🚨 🇨🇱
-<!--
-<img width="977" alt="Captura de pantalla 2024-02-04 a las 08 36 41" src="https://github.com/davila7/AyudaChileGPT/assets/6216945/16cdfa24-6cd9-41df-821a-66a34bd874ad">
--->
-<!--
-| ![Logo](/assets/logo_v2_square.jpg) | Agente IA con información verificada sobre la emergencia en Chile, ¿Cómo ayudar?
-  - Mejora en el código fuente, ¡el proyecto es Open Source!
-  - Agrega y/o verifica información en el GDrive de archivos.
-  - Comparte el agente! |
--->
+
+[![AyudaChileGPT Badge](https://custom-icon-badges.demolab.com/badge/AyudaChileGPT-blue.svg?logo=ayudachilegpt2&logoColor=white&style=plastic)](#)
+
+<sub>
+  
+- Website Oficial: [ayudachilegpt.cl](http://ayudachilegpt.cl/)
+
+- Enlace al agente:  [Ayuda Chile GPT en onrender.com](https://ayuda-chile-gpt.onrender.com/)
+
+- Donaciones a [Desafío Levantemos Chile](https://desafiolevantemoschile.org/) (Fundación de Apoyo a la Ciudadanía y Emergencias en Chile)
+
+</sub>
+<br>
 
 <!--
-| | |
-| --- | --- |
-| ![Logo](/assets/logo_v2_square.jpg) | Agente IA con información verificada sobre la emergencia en Chile, ¿Cómo ayudar? <br> Mejora en el código fuente, ¡el proyecto es Open Source! <br> Agrega y/o verifica información en el GDrive de archivos. <br> Comparte el agente! |
+<img width="977" alt="Captura de pantalla 2024-02-04 a las 08 36 41" src="https://github.com/davila7/AyudaChileGPT/assets/6216945/16cdfa24-6cd9-41df-821a-66a34bd874ad">
 -->
 
 | ![Logo](/assets/logo_v2_square.jpg) | Agente IA con información verificada sobre la emergencia en Chile, ¿Cómo ayudar? <br> Mejora en el código fuente, el proyecto es Open Source. <br> Agrega y/o verifica información en el GDrive de archivos. <br> Comparte el agente! |
@@ -39,8 +41,8 @@ El objetivo de AyudaChileGPT es proporcionar información actualizada y confiabl
 #### Cómo ayudar 🚀
 Puedes ayudar realizando las siguientes acciones:
 
-- Puedes agregar un PR al proyecto si quieres mejorar las funcionalidades del Agente* 
-- Puedes agregar archivos de conocimiento a la base de datos en esta carpega en Google Drive:
+- Puedes agregar un [PR](#contribuciones-a-trav%C3%A9s-de-pull-requests) al proyecto si quieres mejorar las funcionalidades del Agente.
+- Puedes agregar archivos de conocimiento a la base de datos en esta carpega en Google Drive: [DB GDrive](https://bit.ly/BD-GDrive)
   
   ```
   https://bit.ly/BD-GDrive
@@ -92,9 +94,20 @@ Si encuentras útil este proyecto y deseas apoyar su desarrollo, hay varias form
 - **Informes de Errores y Retroalimentación**: Si encuentras algún problema o tienes sugerencias para mejorar, por favor abre un problema en el repositorio de GitHub del proyecto. Tu retroalimentación es valiosa para hacer que el proyecto sea mejor.
 - **Documentación**: Siempre se aprecia mejorar la documentación. Si encuentras alguna laguna o tienes sugerencias para mejorar la documentación del proyecto, puedes informarlo.
 
+#### Contribuciones a través de Pull Requests*
+
+¡Las contribuciones son bienvenidas! Aquí te explicamos cómo puedes contribuir a Term Notes:
+
+1. Haz un fork del repositorio.
+2. Crea una nueva rama: `git checkout -b caracteristica/nombre-de-tu-caracteristica`.
+3. Realiza tus cambios y compromételos: `git commit -m 'Agregar tu característica'`.
+4. Sube los cambios a tu rama: `git push origin caracteristica/nombre-de-tu-caracteristica`.
+5. Crea una nueva solicitud de Pull Request.
+
+
 ##### Versión ChatGPT 🏷️
 En la versión ChatGPT, el agente AyudaChileGPT se ha mejorado para proporcionar una experiencia de chat más interactiva y conversacional. El agente ahora puede mantener una conversación más fluida con el usuario, lo que lo hace más accesible y fácil de usar.
-[AyudaChile GPT 🤖🇨🇱 en ChatGPT](https://chat.openai.com/g/g-G3TvxWdjN-ayudachile-gpt)
+AyudaChile GPT 🤖 🇨🇱 en [ChatGPT](https://chat.openai.com/g/g-G3TvxWdjN-ayudachile-gpt)
 
 
 #### 📄 License 📄
