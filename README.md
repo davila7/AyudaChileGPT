@@ -1,7 +1,16 @@
-# AyudaChileGPT
+### AyudaChileGPT 🤖
 
-### Agente IA open-soruce para atender consultas sobre la emergencia en Chile
+#### Agente IA open-soruce para atender consultas sobre la emergencia en Chile
 <img width="977" alt="Captura de pantalla 2024-02-04 a las 08 36 41" src="https://github.com/davila7/AyudaChileGPT/assets/6216945/16cdfa24-6cd9-41df-821a-66a34bd874ad">
+
+<!-- 
+![Version](https://img.shields.io/github/release/felipealfonsog/TermPDFViewer.svg?style=flat&color=blue)
+-->
+![Main Language](https://img.shields.io/github/languages/top/davila7/AyudaChileGPT.svg?style=flat&color=blue)
+[![Open Source? Yes!](https://badgen.net/badge/Open%20Source%20%3F/Yes%21/blue?icon=github)](https://github.com/Naereen/badges/)
+
+
+[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 
 ## Descripción
 
@@ -10,10 +19,11 @@ AyudaChileGPT es un agente de Inteligencia Artificial que permite responder preg
 
 El objetivo de AyudaChileGPT es proporcionar información actualizada y confiable sobre la emergencia en Chile, ayudando a las personas a obtener respuestas rápidas y precisas a sus preguntas.
 
+
 ## Cómo ayudar
 Puedes ayudar realizando las siguientes acciones:
 
-- Puedes agregar un PR al proyecto si quieres mejorar las funcionalidades del Agente
+- Puedes agregar un PR al proyecto si quieres mejorar las funcionalidades del Agente* 
 - Puedes agregar archivos de conocimiento a la base de datos en esta carpega en Google Drive:https://drive.google.com/drive/folders/1L_VrR_vKrM3lPqMwS_BDFMMNDsBXYUEO?usp=sharing
 - Comparte el link del Agente para que más personas puedan tener acceso a la información actualizada sobre la emergencia que está sufriendo Chile 🇨🇱
 
@@ -57,3 +67,10 @@ Esto abrirá una interfaz de usuario en tu navegador web. Simplemente escribe tu
 ## Versión ChatGPT
 En la versión ChatGPT, el agente AyudaChileGPT se ha mejorado para proporcionar una experiencia de chat más interactiva y conversacional. El agente ahora puede mantener una conversación más fluida con el usuario, lo que lo hace más accesible y fácil de usar.
 [AyudaChile GPT 🤖🇨🇱 en ChatGPT](https://chat.openai.com/g/g-G3TvxWdjN-ayudachile-gpt)
+
+
+#### 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+<sub>Developed from Chile with :heart:</sub>
