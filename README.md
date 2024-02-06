@@ -24,7 +24,8 @@
 
 | | |
 | --- | --- |
-| ![Logo](/assets/logo_v2_square.jpg) | Agente IA con información verificada sobre la emergencia en Chile, ¿Cómo ayudar?
+| ![Logo](/assets/logo_v2_square.jpg) | 
+  - Agente IA con información verificada sobre la emergencia en Chile, ¿Cómo ayudar?
   - Mejora en el código fuente, ¡el proyecto es Open Source!
   - Agrega y/o verifica información en el GDrive de archivos.
   - Comparte el agente! |
