@@ -11,28 +11,15 @@
 -->
 
 <div style="display: flex;">
-    <div style="width: 30%;">
+    <div style="width: 50%;">
         <img src="/assets/logo_v2_square.jpg" alt="Logo" width="100" height="100" />
     </div>
-    <div style="width: 70%; padding-left: 20px;">
+    <div style="width: 50%; padding-left: 20px;">
         <p>Agente IA con información verificada sobre la emergencia en Chile, ¿Cómo ayudar?
         - Mejora en el código fuente, ¡el proyecto es Open Source!
         - Agrega y/o verifica información en el GDrive de archivos.
         - Comparte el agente!</p>
     </div>
-</div>
-
-<div class="pull-left">
-
-<center>Seperar tu contenido </center>
-##### Algunas ideas...
-Separar el texto en dos columnas es ideal para crear historias o hacer una especie de libro virtual, así como tambien traducir. Por lo general, yo lo uso para traducir al ingles en un solo post.
-</div>
-
-<center>Facil de entender</center>
-Al principio me parecia complicado de hacer pero investigue un poco sobre Markdown y entendí para que sirven esos codigos.
-Tu puedes empezar solo copiando los codigos y pegandolo en tu post, pero la idea es que aprendas hacerlo manualmente.
-</div>
 </div>
 
 
