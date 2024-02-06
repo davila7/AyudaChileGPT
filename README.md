@@ -17,8 +17,11 @@
 <!--
 <img width="977" alt="Captura de pantalla 2024-02-04 a las 08 36 41" src="https://github.com/davila7/AyudaChileGPT/assets/6216945/16cdfa24-6cd9-41df-821a-66a34bd874ad">
 -->
+https://github.com/felipealfonsog/AyudaChileGPT/blob/main/README.md
 
-| ![Logo](/assets/logo_v2_square.jpg) | Agente IA con información verificada sobre la emergencia en Chile, ¿Cómo ayudar? <br> Mejora en el código fuente, el proyecto es Open Source. <br> Agrega y/o verifica información en el GDrive de archivos. <br> Comparte el agente! |
+
+
+| ![Logo](/assets/logo_v2_square.jpg) | Agente IA con información verificada sobre la emergencia en Chile, [¿Cómo ayudar?](#c%C3%B3mo-ayudar-)<br> Mejora en el código fuente, el proyecto es Open Source. <br> Agrega y/o verifica información en el GDrive de archivos. <br> Comparte el agente! |
 | :--- | :--- |
 
 
