@@ -10,25 +10,10 @@
   - Comparte el agente! |
 -->
 
-<div style="display: flex;">
-    <div style="width: 50%;">
-        <img src="/assets/logo_v2_square.jpg" alt="Logo" width="100" height="100" />
-    </div>
-    <div style="width: 50%; padding-left: 20px;">
-        <p>Agente IA con información verificada sobre la emergencia en Chile, ¿Cómo ayudar?
-        - Mejora en el código fuente, ¡el proyecto es Open Source!
-        - Agrega y/o verifica información en el GDrive de archivos.
-        - Comparte el agente!</p>
-    </div>
-</div>
-
 | | |
 | --- | --- |
-| ![Logo](/assets/logo_v2_square.jpg) | 
-  - Agente IA con información verificada sobre la emergencia en Chile, ¿Cómo ayudar?
-  - Mejora en el código fuente, ¡el proyecto es Open Source!
-  - Agrega y/o verifica información en el GDrive de archivos.
-  - Comparte el agente! |
+| ![Logo](/assets/logo_v2_square.jpg) | Agente IA con información verificada sobre la emergencia en Chile, ¿Cómo ayudar? <br> Mejora en el código fuente, ¡el proyecto es Open Source! <br> Agrega y/o verifica información en el GDrive de archivos. <br> Comparte el agente! |
+
 
 
 
