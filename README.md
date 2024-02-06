@@ -20,10 +20,10 @@ Agente IA Open-Source para atender consultas sobre la emergencia en Chile 🚨 �
 <img width="977" alt="Captura de pantalla 2024-02-04 a las 08 36 41" src="https://github.com/davila7/AyudaChileGPT/assets/6216945/16cdfa24-6cd9-41df-821a-66a34bd874ad">
 -->
 
-
+<h6>
 | ![Logo](/assets/logo_v2_square.jpg) | Agente IA con información verificada sobre la emergencia en Chile, [¿Cómo ayudar?](#c%C3%B3mo-ayudar-)<br> Mejora en el código fuente, el proyecto es Open Source. <br> Agrega y/o verifica información en el GDrive de archivos. <br> Comparte el agente! |
 | :--- | :--- |
-
+</h6>
 
 
 ![Main Language](https://img.shields.io/github/languages/top/davila7/AyudaChileGPT.svg?style=flat&color=blue)
