@@ -38,7 +38,7 @@ AyudaChileGPT es un agente de Inteligencia Artificial que permite responder preg
 El objetivo de AyudaChileGPT es proporcionar información actualizada y confiable sobre la emergencia en Chile, ayudando a las personas a obtener respuestas rápidas y precisas a sus preguntas.
 
 
-#### Cómo ayudar 🚀
+#### ¿Cómo ayudar? 🚀
 Puedes ayudar realizando las siguientes acciones:
 
 - Puedes agregar un [PR](#contribuciones-a-trav%C3%A9s-de-pull-requests) al proyecto si quieres mejorar las funcionalidades del Agente.
