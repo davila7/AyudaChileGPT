@@ -24,7 +24,12 @@ El objetivo de AyudaChileGPT es proporcionar información actualizada y confiabl
 Puedes ayudar realizando las siguientes acciones:
 
 - Puedes agregar un PR al proyecto si quieres mejorar las funcionalidades del Agente* 
-- Puedes agregar archivos de conocimiento a la base de datos en esta carpega en Google Drive:https://drive.google.com/drive/folders/1L_VrR_vKrM3lPqMwS_BDFMMNDsBXYUEO?usp=sharing
+- Puedes agregar archivos de conocimiento a la base de datos en esta carpega en Google Drive:
+  
+  ```
+  https://bit.ly/BD-GDrive
+  ```
+  
 - Comparte el link del Agente para que más personas puedan tener acceso a la información actualizada sobre la emergencia que está sufriendo Chile 🇨🇱
 
 ## Cómo usar
