@@ -12,7 +12,7 @@
 
 <div style="display: flex;">
     <div style="flex: 1;">
-        <img src="/assets/logo_v2_square.jpg" alt="Logo" width="100%" height="100%" />
+        <img src="/assets/logo_v2_square.jpg" alt="Logo" width="100" height="100" />
     </div>
     <div style="flex: 3; padding-left: 20px;">
         <p>Agente IA con información verificada sobre la emergencia en Chile, ¿Cómo ayudar?
