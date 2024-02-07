@@ -13,7 +13,7 @@ Agente IA Open-Source para atender consultas sobre la emergencia en Chile ðŸš¨ ð
 -->
 
 
-<img src="/assets/ayuda_chile_gpt_logo.png" alt="Logo" width="150">
+<img src="/assets/ayuda_chile_gpt_logo.png" alt="Logo" width="250">
 
 
 
