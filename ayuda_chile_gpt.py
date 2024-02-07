@@ -1,22 +1,10 @@
 import streamlit as st
 import streamlit.components.v1 as components
-import time
 import os
 from judini.codegpt.chat import Completion
 import requests
-import json
 from PIL import Image
-from semantic_router import Route
-from semantic_router.encoders import CohereEncoder
-from semantic_router.layer import RouteLayer
 import pandas as pd
-from langchain.agents import AgentType, Tool, initialize_agent
-from langchain.chains import LLMChain
-from langchain.prompts import PromptTemplate
-from langchain.chat_models import ChatOpenAI
-from langchain.chains.conversation.memory import ConversationBufferWindowMemory
-from langchain_community.callbacks import StreamlitCallbackHandler
-from helper_utils import capture_and_display_output
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -30,54 +18,6 @@ codegpt_api_base_dev = os.getenv("CODEGPT_API_BASE_DEV")
 # set ID de Agentes
 codegpt_acopio_agent_id= os.getenv("CODEGPT_ACOPIO_AGENT_ID")
 codegpt_fibe_agent_id= os.getenv("CODEGPT_FIBE_AGENT_ID")
-
-
-# Langchain Agents and Tools
-# create the prompt template to the tool
-execute_task_prompt = PromptTemplate(
-    template="""Dada la siguiente pregunta relacionada al Incendio en la Quinta Región de Chile `{input}`.
-
-    Realice la tarea entendiendo el problema, extrayendo variables, siendo inteligente
-    y eficiente. Escriba una respuesta detallada que aborde la tarea.
-    Cuando se enfrente a opciones, tome una decisión usted mismo con razonamiento.
-    """,
-    input_variables=["input"],
-)
-
-# Create a ChatOpenAI object with the retrieved API key, API base URL, and agent ID
-llm_acopio = ChatOpenAI(openai_api_key=codegpt_api_key,
-                openai_api_base=codegpt_api_base,
-                model=codegpt_acopio_agent_id, verbose=True)
-llm_chain_acopio = LLMChain(llm=llm_acopio, prompt=execute_task_prompt)
-acopio_agent_tool = Tool(
-    name='Centros de Acopio',
-    func=llm_chain_acopio.run,
-    description="Útil para cuando necesitas responder preguntas sobre Centros de Acopio"
-) 
-
-# Create a ChatOpenAI object with the retrieved API key, API base URL, and agent ID
-llm_fibe = ChatOpenAI(openai_api_key=codegpt_api_key,
-                openai_api_base=codegpt_api_base,
-                model=codegpt_fibe_agent_id, verbose=True)
-llm_chain_fibe = LLMChain(llm=llm_fibe, prompt=execute_task_prompt)
-fibe_agent_tool = Tool(
-    name='FIBE',
-    func=llm_chain_fibe.run,
-    description="Útil para cuando necesitas responder preguntas sobre la ficha La Ficha Básica de Emergencia (FIBE)"
-) 
-
-# agregamos todos los tools al array
-tools = [acopio_agent_tool, fibe_agent_tool]
-
-# memory
-memory = ConversationBufferWindowMemory(
-    memory_key="chat_history",
-    k=3,
-    return_messages=True
-)
-
-llm_openai = ChatOpenAI(model="gpt-4-0125-preview", temperature=0)
-
 
 st.set_page_config(layout="centered")
 
@@ -98,44 +38,7 @@ st.write("Proyecto open-source: "+ "https://github.com/davila7/AyudaChileGPT")
 st.markdown('---')
 
 def page1():
-    # agent = initialize_agent(
-    # tools, llm_openai, max_iteration=3, agent=AgentType.CHAT_CONVERSATIONAL_REACT_DESCRIPTION, verbose=True, handle_parsing_errors=True
-    # )
-
-    # if prompt := st.chat_input():
-    #     st.chat_message("user").write(prompt)
-    #     with st.chat_message("assistant"):
-    #         with st.spinner("Obteniendo información"):
-    #             st_callback = StreamlitCallbackHandler(st.container())
-    #             response = agent.invoke({
-    #                 "input": prompt,
-    #                 # Notice that chat_history is a string, since this prompt is aimed at LLMs, not chat models
-    #                 "chat_history": "Human: Hi! My name is Bob\nAI: Hello Bob! Nice to meet you",
-    #             }, 
-    #             callbacks=[st_callback]
-    #             )
-    #             if response == 'N/A':
-    #                 st.write('Realiza cualquier consulta relacionada con la emergencia en Chile. Ejemplo: ¿Cómo puedo ayudar?')
-    #             else:
-    #                 st.markdown(response)
-
-    # if btn:
-    #     st.markdown("### Response Agent AI")
-    #     with st.spinner("Loading"):
-    #         agent = initialize_agent(
-    #             agent="chat-conversational-react-description",
-    #             tools=tools,
-    #             llm=llm_openai,
-    #             verbose=True,
-    #             max_iteration=3,
-    #             early_stop_method="generate",
-    #             memory=memory
-    #         )
-    #         st.write(agent.invoke(question))
-    # st.header("Consulta a AyudaChileGPT")
-
-    
-    # # Initialize chat history
+    # Initialize chat history
     if "messages" not in st.session_state:
         st.session_state.messages = []
 
@@ -161,40 +64,40 @@ def page1():
                 messages = st.session_state.messages
 
                 # semantic router
-                # JSON que vas a enviar en el cuerpo de la solicitud POST
+                # Rutas semanticas para detectar saludos
                 payload = {
+                    "route_names": [
+                        "greetings"
+                    ],
                     "prompt": prompt
                 }
+                
                 # Realiza la solicitud POST
-                url = codegpt_api_base_dev+"/labs/rag"
-                response = requests.post(url, json=payload)
+                url = codegpt_api_base_dev+"/labs/semantic_route_by_names"
+                response_route = requests.post(url, json=payload)
                 
                 # Inicializa el completion
                 completion = Completion(codegpt_api_key)
-
                 # Verificar si la solicitud fue exitosa
-                if response.status_code == 200:
+                if response_route.status_code == 200:
                     # La respuesta de la solicitud es un JSON, así que usamos .json() para decodificarlo
-                    data = response.json()
+                    data = response_route.json()
 
-                    # Validar si la clave 'requires_rag' está presente y es True
-                    if data.get("requires_rag") == True:
-                        response_completion = completion.create(codegpt_acopio_agent_id, messages, stream=False)
+                    # Validar que ruta tomar
+                    if data.get("route") == "greetings":
+                        response_completion = iter(["Realiza cualquier consulta sobre la emergencia en Chile"])
                     else:
-                        response_completion = "Realiza cualquier consulta sobre la emergencia en Chile"
+                        response_completion = completion.create(codegpt_acopio_agent_id, messages, stream=True)
+                        
                 else:
                     # si hay error en el servicio de RAG se envía al modelo
-                    response_completion = completion.create(codegpt_acopio_agent_id, messages, stream=False)
+                    response_completion = completion.create(codegpt_acopio_agent_id, messages, stream=True)
                 
                 for response in response_completion:
-                    time.sleep(0.05)
                     full_response += (response or "")
-                    message_placeholder.markdown(full_response + "▌")       
+                    message_placeholder.markdown(full_response + "▌") 
                 message_placeholder.markdown(full_response)
         st.session_state.messages.append({"role": "assistant", "content": full_response})
-
-import streamlit as st
-import pandas as pd
 
 def page2():
     st.header("Centros de ayuda verificados")
