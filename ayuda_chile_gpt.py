@@ -103,7 +103,7 @@ def page2():
     st.header("Centros de ayuda verificados")
 
     # Cargar el archivo csv
-    @st.cache_data
+    @st.cache_resource
     def load_data():
         return pd.read_csv('assets/centros_verificados_v6.csv')
 
@@ -119,23 +119,23 @@ def page2():
     # estilos
     style = """
     <style>
-        .dataframe {
-            border-collapse: collapse;
-            padding: 10px;
-            width: 100%;
-        }
-        .dataframe th, .dataframe td {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-        @media screen and (max-width: 600px) {
-            .dataframe tr {
-                border-bottom: none !important;
-            }
-            .dataframe td {
-                border-bottom: 1px solid #ddd;
-            }
-        }
+    .dataframe th
+    {
+    background: rgb(255,122,56);
+    background: linear-gradient(0deg, rgba(255,122,56,1) 0%, rgba(255,83,83,1) 100%);
+    padding: 10px;
+    font-family: trebuchet ms;
+    font-size: 110%;
+    color: white;
+    border:1px dashed white;
+    text-align:left !important;
+    -moz-border-radius: 3x;
+    -webkit-border-radius: 3px;
+    }
+    .dataframe thead
+    {
+    border:none; !important;
+    }
     </style>
     """
 
@@ -154,7 +154,7 @@ def page2():
         df_filtered = df_filtered.drop(columns=['Mapa']).rename(columns={'Mapa enlace': 'Mapa'})
 
         # Mostrar el DataFrame con enlaces 
-        st.write(df_filtered.to_html(escape=False), unsafe_allow_html=True)
+        st.write(df_filtered.to_html(escape=False), unsafe_allow_html=True, style=style)
     else:
         st.write("No se encontraron resultados para el filtro aplicado.")
 
