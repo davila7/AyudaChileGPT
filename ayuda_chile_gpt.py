@@ -105,7 +105,7 @@ def page2():
     # Cargar el archivo csv
     @st.cache_data
     def load_data():
-        return pd.read_csv('assets/centros_verificados_v5_urls.csv')
+        return pd.read_csv('assets/centros_verificados_v6.csv')
 
     # Cargar los datos
     df = load_data()
